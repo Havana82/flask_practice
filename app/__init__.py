@@ -8,7 +8,7 @@ migrate = Migrate()
 def create_app(test_config=None):
     app = Flask(__name__)
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-    app.config['SQLALCHEMY_DATABASE_URI']= 'postgresql+psycopg2://postgres:postgres@localhost:5432/'
+    app.config['SQLALCHEMY_DATABASE_URI']= 'postgresql+psycopg2://postgres:postgres@localhost:5432/hello_books_development'
     from app.models.book import Book
     db.init_app(app)
     migrate.init_app(app, db)
