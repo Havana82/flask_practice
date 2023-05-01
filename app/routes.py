@@ -31,7 +31,7 @@ def create_book():
     new_book = Book(title=request_body["title"],description= request_body["description"] )
     db.session.add(new_book)
     db.session.commit()
-    return make_response(f"Book {new_book.title} was created successfully", 201)
+    return make_response(jsonify(f"Book {new_book.title} was created successfully"), 201)
 
 @books_bp.route("", methods=["GET"])
 def read_all_books():
@@ -63,11 +63,11 @@ def update_book(book_id):
     book.description = request_body["description"]
     
     db.session.commit()
-    return make_response(f"Book {book_id} updated succesffuly")
+    return make_response(jsonify(f"Book {book_id} updated succesffuly"))
 
 @books_bp.route("/<book_id>", methods = ["DELETE"])
 def delete_book(book_id):
     book = validate_book(book_id)
     db.session.delete(book)
     db.session.commit()
-    return make_response(f"Book {book_id} deleted succesffuly")
+    return make_response(jsonify(f"Book {book_id} deleted succesffuly"))
